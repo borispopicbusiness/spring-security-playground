@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: "postgresql-ss-playground"
+    environment:
+      POSTGRES_DB: ssp_db
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_password
+    ports:
+      - "5430:5432" #host:container this is the format of port mapping
+    networks:
+      - ss-p-network
+    volumes:
+      - pgdata:/var/lib/postgres/data
+
+networks:
+  ss-p-network:
+    driver: bridge
+
+volumes:
+  pgdata:
